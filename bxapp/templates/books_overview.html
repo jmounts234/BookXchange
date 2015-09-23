@@ -9,16 +9,18 @@
 	<body>
 		<div class="center">
 			<div class="listItem">
+				{% if books_list %}
+				{% for book in books_list %}
 				<table class="book" fr>
 					<tr>
 						<td rowspan=3 class="cover">
-							<img src="../static/images/book1.jpg" class="bookcover" />
+							<img src="{../static/images/book1.jpg}" class="bookcover" />
 						</td>
 						<th>
 							Our Lent
 						</th>
 						<td class="overview_isbn">
-							ISBN 323342039029309
+							{{ b.isbn }
 						</td>
 					</tr>
 					<tr>
@@ -31,52 +33,8 @@
 						<td>Course CS210</td>
 					</tr>
 				</table>
-
-				<table class="book" fr>
-					<tr>
-						<td rowspan=3 class="cover">
-							<img src="../static/images/book2.jpg" class="bookcover" />
-						</td>
-						<th>
-							Python Web Development with Django
-						</th>
-						<td class="overview_isbn">
-							ISBN 3849874397439
-						</td>
-					</tr>
-					<tr>
-						<td colspan=2>
-							Story about blablbalba with sadfjksfjsaflkj skdjflkjsaf kjsafdlkjsaljf sjfdlksalfdkj kjalksjfdlkjsaf kjasdkjfasldjf kjadsflkjlsajfd kjdsaflkjaslkfdj kljasfdlkjsaldkfjlkjalsjdf lkjasdflkjsaldfj
-						</td>
-					</tr>
-					<tr>
-						<td> Price $20 </td>
-						<td>Course CS312</td>
-					</tr>
-				</table>
-
-				<table class="book" fr>
-					<tr>
-						<td rowspan=3 class="cover">
-							<img src="../static/images/book3.jpg" class="bookcover" />
-						</td>
-						<th>
-							Software Testing - Concept and Operations
-						</th>
-						<td class="overview_isbn">
-							ISBN 233434343434
-						</td>
-					</tr>
-					<tr>
-						<td colspan=2>
-							Story about blablbalba with sadfjksfjsaflkj skdjflkjsaf kjsafdlkjsaljf sjfdlksalfdkj kjalksjfdlkjsaf kjasdkjfasldjf kjadsflkjlsajfd kjdsaflkjaslkfdj kljasfdlkjsaldkfjlkjalsjdf lkjasdflkjsaldfj
-						</td>
-					</tr>
-					<tr>
-						<td> Price $20 </td>
-						<td>Course CS312</td>
-					</tr>
-				</table>
+				{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</body>
