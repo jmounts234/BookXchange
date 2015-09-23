@@ -9,18 +9,15 @@
 	<body>
 		<div class="center">
 			<div class="listItem">
-				{% if books_list %}
-				{% for book in books_list %}
 				<table class="book" fr>
 					<tr>
 						<td rowspan=3 class="cover">
-							<img src="{../static/images/book1.jpg}" class="bookcover" />
+							<img src="../static/images/book1.jpg" class="bookcover" />
 						</td>
 						<th>
 							Our Lent
 						</th>
 						<td class="overview_isbn">
-							{{ b.isbn }
 						</td>
 					</tr>
 					<tr>
@@ -33,8 +30,6 @@
 						<td>Course CS210</td>
 					</tr>
 				</table>
-				{% endfor %}
-				{% endif %}
 			</div>
 		</div>
 	</body>
