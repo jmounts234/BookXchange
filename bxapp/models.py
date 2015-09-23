@@ -7,3 +7,5 @@ class SignUp(models.Model):
 
 	def __unicode__(self):
 		return self.email
+class Book(models.Model)
+	isbn = models.CharField(max_length=13)
