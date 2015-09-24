@@ -10,6 +10,31 @@ class SignUp(models.Model):
 
 class Book(models.Model):
 	isbn = models.CharField(max_length=13)
+	rawjson = models.CharField(max_length=100000)
 
 	def __unicode__(self):
 		return self.isbn
+
+	def get_json(self):
+		import json
+		return json.loads(self.rawjson)
+
+	def title(self):
+		data = self.get_json()
+		return data['items'][1]['volumeInfo']['title']
+
+	def description(self):
+		data = self.get_json()
+		return data['items'][2]['volumeInfo']['description']
+
+	def year(self):
+		data = self.get_json()
+		return data['items'][2]['volumeInfo']['publishedDate']
+
+	def subtitle(self):
+		data = self.get_json()
+		return data['items'][1]['volumeInfo']['subtitle']
+
+	def authors(self):
+		data = self.get_json()
+		return ", ".join(data['items'][1]['volumeInfo']['authors'])

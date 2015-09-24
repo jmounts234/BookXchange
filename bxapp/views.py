@@ -1,23 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-
 from django.shortcuts import render_to_response
+from .models import *
 
 def index(request):
 	return allBooks(request)
 
 def allBooks(request):
 
-	import urllib, json
-	url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9780321534965"
-	response = urllib.urlopen(url)
-	bookinfo = json.loads(response.read())
-	title = bookinfo['items'][1]['volumeInfo']['title']
+	from .helpers import createbook
 
+	book = createbook('9780321534965')
+	b = book.make()
 
 	template = loader.get_template('books_overview.html')
-	context = RequestContext(request, {"title" : title})
+	context = RequestContext(request, {'title' : b.title})
 	return HttpResponse(template.render(context))
 
 def indiviualBooks(request):
