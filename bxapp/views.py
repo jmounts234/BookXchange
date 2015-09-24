@@ -8,8 +8,16 @@ def index(request):
 	return allBooks(request)
 
 def allBooks(request):
+
+	import urllib, json
+	url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9780321534965"
+	response = urllib.urlopen(url)
+	bookinfo = json.loads(response.read())
+	title = bookinfo['items'][1]['volumeInfo']['title']
+
+
 	template = loader.get_template('books_overview.html')
-	context = RequestContext(request, {})
+	context = RequestContext(request, {"title" : title})
 	return HttpResponse(template.render(context))
 
 def indiviualBooks(request):
