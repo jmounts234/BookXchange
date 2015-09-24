@@ -8,12 +8,9 @@ def index(request):
 	return allBooks(request)
 
 def allBooks(request):
-
 	from .helpers import createbook
 	book = createbook('9780321534965')
 	b = book.make()
-	b.save()
-
 
 	template = loader.get_template('books_overview.html')
 	context = RequestContext(request, {'book' : b})

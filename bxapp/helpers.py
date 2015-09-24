@@ -4,7 +4,9 @@ class createbook:
 
 	def make(self):
 		from .models import Book
-		return Book(isbn=self.isbn, rawjson=self.get_rawjson())
+		book = Book(isbn=self.isbn, rawjson=self.get_rawjson())
+		book.save()
+		return book
 
 	def get_rawjson(self):
 		import urllib
