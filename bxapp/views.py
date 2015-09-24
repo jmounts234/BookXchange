@@ -10,12 +10,13 @@ def index(request):
 def allBooks(request):
 
 	from .helpers import createbook
-
 	book = createbook('9780321534965')
 	b = book.make()
+	b.save()
+
 
 	template = loader.get_template('books_overview.html')
-	context = RequestContext(request, {'title' : b.title})
+	context = RequestContext(request, {'book' : b})
 	return HttpResponse(template.render(context))
 
 def indiviualBooks(request):
