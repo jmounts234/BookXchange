@@ -9,7 +9,7 @@ class SignUp(models.Model):
 		return self.email
 
 class Book(models.Model):
-	isbn = models.CharField(max_length=13)
+	isbn = models.CharField(max_length=13, unique=True)
 	rawjson = models.CharField(max_length=100000)
 
 	def __unicode__(self):
@@ -38,3 +38,7 @@ class Book(models.Model):
 	def authors(self):
 		data = self.get_json()
 		return ", ".join(data['items'][1]['volumeInfo']['authors'])
+
+	def cover(self):
+		data = self.get_json()
+		return data['items'][2]['volumeInfo']['imageLinks']['thumbnail']

@@ -8,9 +8,15 @@ def index(request):
 	return allBooks(request)
 
 def allBooks(request):
-	from .helpers import createbook
-	book = createbook('9780321534965')
-	b = book.make()
+
+	# example uniqueness in book table
+	try:
+		from .helpers import createbook
+		book = createbook('9780321534965')
+		b = book.make()
+	except:
+		b = Book.objects.get(isbn='9780321534965')
+
 
 	template = loader.get_template('books_overview.html')
 	context = RequestContext(request, {'book' : b})

@@ -12,10 +12,12 @@
 				<table class="book" fr>
 					<tr>
 						<td rowspan=3 class="cover">
-							<img src="../static/images/book1.jpg" class="bookcover" />
+							<img src="{{ book.cover }}" class="bookcover" />
 						</td>
 						<th>
-							{{ book.title }}
+							{{ book.title }} by {{ book.authors }} - {{ book.year }}
+							<br/>
+							{{ book.subtitle }}
 						</th>
 						<td class="overview_isbn">
 						</td>
