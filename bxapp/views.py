@@ -5,9 +5,10 @@ from django.shortcuts import render_to_response
 from .models import *
 
 def index(request):
-	return allBooks(request)
+	return book(request, '9780321534965')
+	# return overview(request)
 
-def allBooks(request):
+def overview(request):
 
 	# example uniqueness in book table
 	try:
@@ -17,15 +18,18 @@ def allBooks(request):
 	except:
 		b = Book.objects.get(isbn='9780321534965')
 
-
-	template = loader.get_template('books_overview.html')
+	template = loader.get_template('overview.html')
 	context = RequestContext(request, {'book' : b})
 	return HttpResponse(template.render(context))
 
-def indiviualBooks(request):
-	template = loader.get_template('books_specview.html')
-	context = RequestContext(request, {})
-	return HttpResponse(template.render(context))
+def book(request, isbn):
+	try:
+		book = Book.objects.get(isbn=isbn)
+		template = loader.get_template('specview.html')
+		context = RequestContext(request, { 'book' : book })
+		return HttpResponse(template.render(context))
+	except:
+		return HttpResponse("The book you've selected does not exist.")
 
 def signUp(request):
 	template = loader.get_template('signup.html')

@@ -15,6 +15,9 @@ class Book(models.Model):
 	def __unicode__(self):
 		return self.isbn
 
+	def get_isbn(self):
+		return self.isbn
+
 	def get_json(self):
 		import json
 		return json.loads(self.rawjson)

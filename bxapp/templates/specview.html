@@ -49,26 +49,24 @@
 					<table class="book_spec" fr>
 						<tr>
 							<td rowspan=6 class="cover">
-								<img src="../static/images/book3.jpg" class="bookcover" />
+								<img src="{{ book.cover }}" class="bookcover" />
 							</td>
 							<td class="spec">
-								<strong>Software Testing - Concept and Operations</strong>
+								<strong>{{ book.title }}</strong> by <strong>{{ book.authors }}</strong> - {{ book.year }}<br/>
+								{{ book.subtitle }}
 							</td>
 						</tr>
 						<tr>
 							<td class="spec">
-								ISBN 233434343434
+								ISBN {{ book.get_isbn }}
 							</td>
 						</tr>
 						<tr>
 							<td class="spec"> Price $20 </td>
 						</tr>
 						<tr>
-							<td class="spec">Course CS312</td>
-						</tr>
-						<tr>
 							<td class="spec">
-								Story about blablbalba with sadfjksfjsaflkj skdjflkjsaf kjsafdlkjsaljf sjfdlksalfdkj kjalksjfdlkjsaf kjasdkjfasldjf kjadsflkjlsajfd kjdsaflkjaslkfdj kljasfdlkjsaldkfjlkjalsjdf lkjasdflkjsaldfj
+								{{ book.description }}
 							</td>
 						</tr>
 						<tr>
