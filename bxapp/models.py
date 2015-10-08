@@ -1,12 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class SignUp(models.Model):
+class User(models.Model):
 	email = models.EmailField()
 	password = models.CharField(max_length=120, default='password', blank=False, null=False)
 
-	def __unicode__(self):
-		return self.email
+class Sale(models.Model):
+	isbn = models.CharField(max_length=13, unique=True)
+	seller = models.EmailField()
 
 class Book(models.Model):
 	isbn = models.CharField(max_length=13, unique=True)
