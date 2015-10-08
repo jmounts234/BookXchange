@@ -15,3 +15,9 @@ class createbook:
 	def gen_url(self):
 		return "https://www.googleapis.com/books/v1/volumes?q=isbn:" + self.isbn
 
+class createuser:
+	def signUp(self):
+		from .models import User
+		user = User(email = self.email, password = self.password)
+		user.save()
+		return user
