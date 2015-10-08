@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from .models import *
 
 def index(request):
-	return overview(request, '9780321534965')
+	return overview(request)
 	# return overview(request)
 
 # def overview(request):
@@ -22,7 +22,8 @@ def index(request):
 # 	context = RequestContext(request, {'book' : b})
 # 	return HttpResponse(template.render(context))
 
-def overview(request, isbn):
+def overview(request):
+	isbn = '9780321534965'
 	try:
 		book = Book.objects.get(isbn=isbn)
 		template = loader.get_template('overview.html')
