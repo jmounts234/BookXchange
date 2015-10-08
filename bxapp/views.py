@@ -23,11 +23,19 @@ def index(request):
 # 	return HttpResponse(template.render(context))
 
 def overview(request):
-	isbn = '9780321534965'
+	# from .helpers import createbook
+	# createbook('9780553293357').make()
+	# createbook('9780131103627').make()
+
+	books = Book.objects.all()
+	template = loader.get_template('overview.html')
+	context = RequestContext(request, { 'books' : books })
+	return HttpResponse(template.render(context))
+
 	try:
-		book = Book.objects.get(isbn=isbn)
+		books = Book.objects.all()
 		template = loader.get_template('overview.html')
-		context = RequestContext(request, { 'book' : book })
+		context = RequestContext(request, { 'books' : books })
 		return HttpResponse(template.render(context))
 	except:
 		return HttpResponse("The book you've selected does not exist.")
