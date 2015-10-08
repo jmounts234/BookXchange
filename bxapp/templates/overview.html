@@ -44,6 +44,8 @@
 				</div>
 			</header>
 
+			{% for book in books %}
+
 			<div id="content">
 				<div class="post">
 					<table class="book_spec" fr>
@@ -76,8 +78,11 @@
 						</tr>
 					</table>
 				</div>
+			</div>		
 
-			</div>
+			{% endfor %}
+
+
 		</div>
 
 		<script>

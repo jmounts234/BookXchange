@@ -23,25 +23,43 @@ class Book(models.Model):
 		return json.loads(self.rawjson)
 
 	def title(self):
-		data = self.get_json()
-		return data['items'][1]['volumeInfo']['title']
+		try:
+			data = self.get_json()
+			return data['items'][0]['volumeInfo']['title']
+		except:
+			return "no title"
 
 	def description(self):
-		data = self.get_json()
-		return data['items'][2]['volumeInfo']['description']
+		try:
+			data = self.get_json()
+			return data['items'][0]['volumeInfo']['description']
+		except:
+			return "no description"
 
 	def year(self):
-		data = self.get_json()
-		return data['items'][2]['volumeInfo']['publishedDate']
+		try:
+			data = self.get_json()
+			return data['items'][0]['volumeInfo']['publishedDate']
+		except:
+			return "no year"
 
 	def subtitle(self):
-		data = self.get_json()
-		return data['items'][1]['volumeInfo']['subtitle']
+		try:
+			data = self.get_json()
+			return data['items'][0]['volumeInfo']['subtitle']
+		except:
+			return "no subtitle"
 
 	def authors(self):
-		data = self.get_json()
-		return ", ".join(data['items'][1]['volumeInfo']['authors'])
+		try:
+			data = self.get_json()
+			return ", ".join(data['items'][0]['volumeInfo']['authors'])
+		except:
+			return "no authors"
 
 	def cover(self):
-		data = self.get_json()
-		return data['items'][2]['volumeInfo']['imageLinks']['thumbnail']
+		try:
+			data = self.get_json()
+			return data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+		except:
+			return "no cover"
