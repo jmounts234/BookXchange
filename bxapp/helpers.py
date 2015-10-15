@@ -2,7 +2,16 @@ class createbook:
 	def __init__(self, isbn):
 		self.isbn = isbn
 
+	def validate_isbn(self):
+		if type(self.isbn) != type("abcd"): return False 
+		if len(self.isbn) != 13: return False 
+		for n in self.isbn:
+			if n not in "1234567890": return False 
+		if self.isbn.count('0') >= 10: return False
+		return True
+
 	def make(self):
+		if not self.validate_isbn(): return False
 		from .models import Book
 		book = Book(isbn=self.isbn, rawjson=self.get_rawjson())
 		book.save()
