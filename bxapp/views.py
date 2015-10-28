@@ -25,7 +25,10 @@ def signUp(request):
 	if(request.GET.get('mybtn')):
 		email = request.GET.get('email')
 		password = request.GET.get('password')
-		createuser(email, password).signUp()
+		try:
+			createuser(email, password).signUp()
+		except:
+			return HttpResponse("User name is already in use.")
 		template = loader.get_template('overview.html')
 	else:
 		template = loader.get_template('signup.html')
