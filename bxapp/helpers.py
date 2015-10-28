@@ -25,6 +25,10 @@ class createbook:
 		return "https://www.googleapis.com/books/v1/volumes?q=isbn:" + self.isbn
 
 class createuser:
+	def __init__(self, email, password):
+		self.email = email
+		self.password = password
+
 	def signUp(self):
 		from .models import User
 		user = User(email = self.email, password = self.password)
