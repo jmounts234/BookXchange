@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.shortcuts import render_to_response
 from .models import *
-from .helpers import createuser
+from .helpers import *
 
 def index(request):
 	return overview(request)
@@ -22,7 +22,7 @@ def overview(request):
 		return HttpResponse("The book you've selected does not exist.")
 
 def signUp(request):
-	if(request.GET.get('mybtn')):
+	if(request.GET.get('signUp')):
 		email = request.GET.get('email')
 		password = request.GET.get('password')
 		try:
@@ -42,15 +42,15 @@ def purchase(request):
 	return HttpResponse(template.render(context))
 
 def addBook(request):
-	if(request.GET.get('mybtn')):
+	if(request.GET.get('addBook')):
 		isbn = request.GET.get('isbn')
-		try:
-			createbook(isbn).make()
-		except:
-			return HttpResponse("Isbn is already in use.")
+		createbook(isbn).make()
 		template = loader.get_template('overview.html')
 	else:
-		template = loader.get_template('bookAdded.html')
+		template = loader.get_template('addBook.html')
 
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
+
+
+
