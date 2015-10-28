@@ -1,10 +1,32 @@
 <html>
     <head>
-        <title>Added</title>
+        <title>Overview</title>
+        <link rel="stylesheet" href="../static/css/signup.css">
     </head>
-    	<div class="addBook"><a href="/overview/" class="AddBook">AddBook</a><div>
     <body>
-        Thank you for your BookXchange addition.
+        <div class="container">
+
+            <form id="addbook">
+
+                <div class="header">
+                
+                    <h3>Add My Book</h3>
+                    
+                    <p>Enter the ISBN of the book</p>
+                    
+                </div>
+                
+                <div class="sep"></div>
+
+                <div class="inputs">
+                    <form action="#" method="get">
+                        <input type="isbn" placeholder="isbn" name="isbn" autofocus />
+                    
+                        <input type="submit" class="addbook" value="Add Book" name="addbook">                       
+                    </form>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
 ​
