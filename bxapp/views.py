@@ -35,3 +35,22 @@ def signUp(request):
 
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
+
+def purchase(request):
+	template = loader.get_template('purchase.html')
+	context = RequestContext(request, {})
+	return HttpResponse(template.render(context))
+
+def addBook(request):
+	if(request.GET.get('mybtn')):
+		isbn = request.GET.get('isbn')
+		try:
+			createbook(isbn).make()
+		except:
+			return HttpResponse("Isbn is already in use.")
+		template = loader.get_template('overview.html')
+	else:
+		template = loader.get_template('bookAdded.html')
+
+	context = RequestContext(request, {})
+	return HttpResponse(template.render(context))
