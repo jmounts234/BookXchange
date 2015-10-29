@@ -24,7 +24,7 @@ def overview(request):
 def signUp(request):
 	if(request.GET.get('signUp')):
 		email = request.GET.get('email')
-		password = request.GET.get('password')
+		password = request.GET.get('password')	
 		try:
 			createuser(email, password).signUp()
 		except:
@@ -35,6 +35,29 @@ def signUp(request):
 
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
+
+
+def signin(request):
+	context = RequestContext(request, {})
+
+	print(request.COOKIES)
+
+	if(request.GET.get('signin')):
+		email = request.GET.get('email')
+		password = request.GET.get('password')	
+
+		template = loader.get_template('overview.html')
+		response = HttpResponse(template.render(context))
+		response.set_cookie("ta", "tb", max_age=100)
+	else:
+		template = loader.get_template('signin.html')
+		return HttpResponse(template.render(context))
+
+	return response
+
+	# print(request.COOKIES)
+	# response.set_cookie('name3', 'jujule')
+
 
 def purchase(request):
 	template = loader.get_template('purchase.html')
