@@ -34,9 +34,14 @@
 								</div>
 							</span>
 						</li> -->
+
+						{% if name != None %}
+						<li><a>logged in as {{ name }}</a> </li>
+						{% else %}
 						<li><a href="/signin/">Sign in</a>
 						<li><a href="/signUp/">Sign up</a>
-							
+						{% endif %}
+
 						</li>
 					</ul>
 				</div>
