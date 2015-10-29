@@ -47,9 +47,29 @@
 				</div>
 			</header>
 
+			<div class="content">
 			{% for book in books %}
 
-			<div id="content">
+				<div class="post">
+						<div class="bookcover"><img src="{{ book.cover }}" /></div>
+						
+						<div class="post-content">
+							<strong>{{ book.title }}</strong> by <strong>{{ book.authors }}</strong> - {{ book.year }}<br/>
+							<br/>
+							{{ book.description }}
+							<br/><br/>
+
+							<div class="buyitdiv"><a href="/purchase/" class="buyit">Buy it</a></div>
+
+					</div>
+
+
+
+			</div>
+
+
+
+<!-- 			<div id="content">
 				<div class="post">
 					<table class="book_spec" fr>
 						<tr>
@@ -75,17 +95,16 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="spec">
+					<td class="spec">
 								<div class="buyitdiv"><a href="/purchase/" class="buyit">Buy it</a><div>
-							</td>
+							</td> 
 						</tr>
 					</table>
 				</div>
-			</div>		
+			</div>		 -->
 
 			{% endfor %}
-
-
+			</div>
 		</div>
 
 		<script>
