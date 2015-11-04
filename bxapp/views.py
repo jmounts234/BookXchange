@@ -57,8 +57,12 @@ def signin(request):
 	return response
 
 def purchase(request):
-	template = loader.get_template('purchase.html')
 	context = RequestContext(request, {})
+	isbnToRemove = request.GET.get('isbn')
+	from .models import Book
+	book = Book.objects.get(isbn = isbnToRemove)
+	book.remove()
+	template = loader.get_template('purchase.html')
 	return HttpResponse(template.render(context))
 
 def addBook(request):
