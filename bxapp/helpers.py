@@ -4,7 +4,7 @@ class createbook:
 
 	def validate_isbn(self):
 		if len(self.isbn) != 13:
-			if len(self.isbn) != 10:
+			if len(self.isbn):
 				return False 
 		for n in self.isbn:
 			if n not in "1234567890": return False

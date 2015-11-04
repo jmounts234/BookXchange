@@ -59,49 +59,14 @@
 							{{ book.description }}
 							<br/><br/>
 
+							{% if name != None %}
 							<div class="buyitdiv"><a href="/purchase/" class="buyit">Buy it</a></div>
+							{% endif %}
 
 					</div>
 
-
-
 			</div>
 
-
-
-<!-- 			<div id="content">
-				<div class="post">
-					<table class="book_spec" fr>
-						<tr>
-							<td rowspan=6 class="cover">
-								<img src="{{ book.cover }}" class="bookcover" />
-							</td>
-							<td class="spec">
-								<strong>{{ book.title }}</strong> by <strong>{{ book.authors }}</strong> - {{ book.year }}<br/>
-								{{ book.subtitle }}
-							</td>
-						</tr>
-						<tr>
-							<td class="spec">
-								ISBN {{ book.get_isbn }}
-							</td>
-						</tr>
-						<tr>
-							<td class="spec"> Price $20 </td>
-						</tr>
-						<tr>
-							<td class="spec">
-								{{ book.description }}
-							</td>
-						</tr>
-						<tr>
-					<td class="spec">
-								<div class="buyitdiv"><a href="/purchase/" class="buyit">Buy it</a><div>
-							</td> 
-						</tr>
-					</table>
-				</div>
-			</div>		 -->
 
 			{% endfor %}
 			</div>

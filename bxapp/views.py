@@ -37,7 +37,6 @@ def signUp(request):
 	context = RequestContext(request, {})
 	return HttpResponse(template.render(context))
 
-
 def signin(request):
 	context = RequestContext(request, {})
 
@@ -56,7 +55,6 @@ def signin(request):
 		return HttpResponse(template.render(context))
 
 	return response
-
 
 def purchase(request):
 	template = loader.get_template('purchase.html')
