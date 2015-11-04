@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render_to_response
 from .models import *
@@ -39,12 +38,12 @@ def signUp(request):
 			createuser(email, password).signUp()
 		except:
 			return HttpResponse("User name is already in use.")
-		return HttpResponseRedirect('/')
+		template = loader.get_template('overview.html')
 	else:
 		template = loader.get_template('signup.html')
 
 	context = RequestContext(request, {})
-	return HttpResponse(template.render())
+	return HttpResponse(template.render(context))
 
 def signin(request):
 	context = RequestContext(request, {})
@@ -55,7 +54,7 @@ def signin(request):
 		try:
 			User.objects.get(email = aemail, password = apassword)
 			template = loader.get_template('overview.html')
-			response = HttpResponseRedirect('/')
+			response = HttpResponse(template.render(context))
 			response.set_cookie('mail', aemail, max_age = 100)
 		except:
 			return HttpResponse("The username/pass does not exist.")
@@ -65,6 +64,11 @@ def signin(request):
 
 	return response
 
+def purchase(request):
+	context = RequestContext(request, {})
+	template = loader.get_template('purchase.html')
+	return HttpResponse(template.render(context))
+
 def addBook(request):
 	context = RequestContext(request, {})
 	if(request.GET.get('addBook')):
@@ -72,7 +76,7 @@ def addBook(request):
 		if not createbook(isbn).make():
 			return HttpResponse("Invalid ISBN number.")
 		template = loader.get_template('overview.html')
-		return HttpResponseRedirect('/')
+		return HttpResponse(template.render(context))
 	else:
 		template = loader.get_template('addBook.html')
 
