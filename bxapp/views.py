@@ -42,12 +42,15 @@ def signin(request):
 	context = RequestContext(request, {})
 
 	if(request.GET.get('signin')):
-		email = request.GET.get('email')
-		password = request.GET.get('password')	
-
-		template = loader.get_template('overview.html')
-		response = HttpResponse(template.render(context))
-		response.set_cookie('mail', email, max_age = 100)
+		aemail = request.GET.get('email')
+		apassword = request.GET.get('password')
+		try:
+			User.objects.get(email = aemail, password = apassword)
+			template = loader.get_template('overview.html')
+			response = HttpResponse(template.render(context))
+			response.set_cookie('mail', aemail, max_age = 100)
+		except:
+			return HttpResponse("The username/pass does not exist.")
 	else:
 		template = loader.get_template('signin.html')
 		return HttpResponse(template.render(context))
