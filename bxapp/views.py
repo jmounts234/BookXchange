@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render_to_response
 from .models import *
@@ -38,12 +39,12 @@ def signUp(request):
 			createuser(email, password).signUp()
 		except:
 			return HttpResponse("User name is already in use.")
-		template = loader.get_template('overview.html')
+		return HttpResponseRedirect('/')
 	else:
 		template = loader.get_template('signup.html')
 
 	context = RequestContext(request, {})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render())
 
 def signin(request):
 	context = RequestContext(request, {})
@@ -54,7 +55,7 @@ def signin(request):
 		try:
 			User.objects.get(email = aemail, password = apassword)
 			template = loader.get_template('overview.html')
-			response = HttpResponse(template.render(context))
+			response = HttpResponseRedirect('/')
 			response.set_cookie('mail', aemail, max_age = 100)
 		except:
 			return HttpResponse("The username/pass does not exist.")
@@ -71,7 +72,7 @@ def addBook(request):
 		if not createbook(isbn).make():
 			return HttpResponse("Invalid ISBN number.")
 		template = loader.get_template('overview.html')
-		return HttpResponse(template.render(context))
+		return HttpResponseRedirect('/')
 	else:
 		template = loader.get_template('addBook.html')
 
