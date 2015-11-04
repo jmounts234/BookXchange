@@ -18,24 +18,8 @@
 
 					<ul>
 						<li><a href="/overview/">Home</a></li>
-						<li><a href="/addBook/">Add Book</a></li>
-<!-- 						<li><a id="sign-in" href="#">Sign in</a>
-							<span id="sign-in-menu">
-								<div class="arrow-up"></div>
-								<div class="arrow-up-top"></div>
-								
-								<div class="form">
-									<input type="text" placeholder="Username">
-									<input type="password" placeholder="Password">
-								</div>
-
-								<div class="submit-area">
-									<input type="submit" value="Sign in">
-								</div>
-							</span>
-						</li> -->
-
 						{% if name != None %}
+						<li><a href="/addBook/">Add Book</a></li>
 						<li><a>logged in as {{ name }}</a> </li>
 						{% else %}
 						<li><a href="/signin/">Sign in</a>
