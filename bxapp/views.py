@@ -9,6 +9,14 @@ def index(request):
 	return overview(request)
 
 def overview(request):
+	if(request.GET.get('purchase')):
+		context = RequestContext(request, {})
+		isbnToRemove = request.GET.get('isbn')
+		book = Book.objects.get(isbn = isbnToRemove)
+		book.delete()
+		template = loader.get_template('purchase.html')
+		return HttpResponse(template.render(context))
+
 	try:
 		mail = request.COOKIES['mail']
 	except:
@@ -55,15 +63,6 @@ def signin(request):
 		return HttpResponse(template.render(context))
 
 	return response
-
-def purchase(request):
-	context = RequestContext(request, {})
-	isbnToRemove = request.GET.get('isbn')
-	from .models import Book
-	book = Book.objects.get(isbn = isbnToRemove)
-	book.remove()
-	template = loader.get_template('purchase.html')
-	return HttpResponse(template.render(context))
 
 def addBook(request):
 	context = RequestContext(request, {})
