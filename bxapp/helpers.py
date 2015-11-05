@@ -10,10 +10,19 @@ class createbook:
 			if n not in "1234567890": return False
 		return True
 
+	def validate_json(self):
+		import json
+		data = json.loads(self.get_rawjson())
+		print(data['totalItems'])
+		if data['totalItems'] == 0:
+			return False
+		return True
+
 	def make(self):
 		if not self.validate_isbn(): return False
 		from .models import Book
 		book = Book(isbn=self.isbn, rawjson=self.get_rawjson())
+		if not self.validate_json(): return False
 		book.save()
 		return book
 
