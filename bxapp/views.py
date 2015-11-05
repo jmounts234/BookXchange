@@ -76,7 +76,13 @@ def purchase(request):
 	return HttpResponse(template.render(context))
 
 def addBook(request):
-	context = RequestContext(request, {})
+	try:
+		mail = request.COOKIES['mail']
+	except:
+		mail = None
+		return HttpResponseRedirect('/')
+
+	context = RequestContext(request, {'name' : mail })
 	if(request.GET.get('addBook')):
 		isbn = request.GET.get('isbn')
 		try:
