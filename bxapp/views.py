@@ -56,7 +56,7 @@ def signin(request):
 			User.objects.get(email = aemail, password = apassword)
 			template = loader.get_template('overview.html')
 			response = HttpResponseRedirect('/')
-			response.set_cookie('mail', aemail, max_age = 100)
+			response.set_cookie('mail', aemail, max_age = 100000000)
 		except:
 			return HttpResponse("The username/pass does not exist.")
 	else:
@@ -64,6 +64,11 @@ def signin(request):
 		return HttpResponse(template.render(context))
 
 	return response
+
+def logout(request):
+  response = HttpResponseRedirect('/')
+  response.delete_cookie('mail')
+  return response
 
 def purchase(request):
 	context = RequestContext(request, {})
