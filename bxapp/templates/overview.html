@@ -36,9 +36,10 @@
 			{% for book in books %}
 
 				<div class="post">
-						<div class="bookcover"><img src="{{ book.cover }}" /></div>
+						
 						
 						<div class="post-content">
+							<img class="bookcover" src="{{ book.cover }}" />
 							<strong>{{ book.title }}</strong> by <strong>{{ book.authors }}</strong> - {{ book.year }}<br/>
 							<br/>
 							{{ book.description }}

@@ -217,15 +217,18 @@ label.css-label {
 .post-content {
 	display: inline-block;
 	height: 12em;
-	margin-left: 9em;
+	margin-left: 1em;
 	margin-right: 1em;
 	margin-top: 1em;
 }
 
 .bookcover {
+	display: inline-block;
 	height: 10em;
+	margin-right: 2em;
 	float: left;
-  position: absolute;
+  	position: static;
+  	width: 7em;
 }
 
 .buyitdiv{
