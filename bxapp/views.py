@@ -79,10 +79,13 @@ def addBook(request):
 	context = RequestContext(request, {})
 	if(request.GET.get('addBook')):
 		isbn = request.GET.get('isbn')
-		if not createbook(isbn).make():
-			return HttpResponse("Invalid ISBN number.")
-		template = loader.get_template('overview.html')
-		return HttpResponseRedirect('/')
+		try:
+			if not createbook(isbn).make():
+				return HttpResponse("Invalid ISBN number.")
+			template = loader.get_template('overview.html')
+			return HttpResponseRedirect('/')
+		except:
+			return HttpResponse("ISBN already exists")
 	else:
 		template = loader.get_template('addBook.html')
 
