@@ -173,6 +173,7 @@ header li > span input[type=submit]:hover {
 }
 
 #signup .header {
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
