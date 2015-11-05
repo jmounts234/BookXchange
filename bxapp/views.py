@@ -71,7 +71,13 @@ def logout(request):
   return response
 
 def purchase(request):
-	context = RequestContext(request, {})
+	try:
+		mail = request.COOKIES['mail']
+	except:
+		mail = None
+		return HttpResponseRedirect('/')
+	
+	context = RequestContext(request, {'name' : mail })
 	template = loader.get_template('purchase.html')
 	return HttpResponse(template.render(context))
 
