@@ -1,21 +1,16 @@
 class createbook:
 	def __init__(self, isbn):
-		self.isbn = isbn
+		isbn2 = "".join([n for n in isbn if n in "1234567890X"])
+		self.isbn = isbn2
 
 	def validate_isbn(self):
-		if len(self.isbn) != 13:
-			if len(self.isbn) != 10:
-				return False 
-		for n in self.isbn:
-			if n not in "1234567890": return False
-		return True
+		if len(self.isbn) == 13 or len(self.isbn) == 10: return True 
+		return False
 
 	def validate_json(self):
 		import json
 		data = json.loads(self.get_rawjson())
-		print(data['totalItems'])
-		if data['totalItems'] == 0:
-			return False
+		if data['totalItems'] == 0: return False
 		return True
 
 	def make(self):
